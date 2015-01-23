@@ -2,11 +2,59 @@ module.exports = {
   encode: encode,
   decode: decode,
   map: map,
-  tree: tree
+  tree: tree,
+  createEncodeStream: createEncodeStream,
+  createDecodeStream: createDecodeStream
 };
 
 var map = require('./map');
 var tree = require('./tree');
+var util = require('util');
+var Transform = require('stream').Transform;
+
+// Encode stream
+function MorseEncodeStream(options) {
+  Transform.call(this, options);
+}
+
+util.inherits(MorseEncodeStream, Transform);
+
+MorseEncodeStream.prototype._transform = function(chunk, encoding, callback) {
+  var str = chunk.toString().toUpperCase();
+  str = encode(str);
+  this.push(str)
+  callback();
+};
+
+MorseEncodeStream.prototype._flush = function(callback) {
+  callback();
+};
+
+// Decode stream stream
+function MorseDecodeStream(options) {
+  Transform.call(this, options);
+}
+
+util.inherits(MorseDecodeStream, Transform);
+
+MorseDecodeStream.prototype._transform = function(chunk, encoding, callback) {
+  var str = chunk.toString().toUpperCase();
+  str = decode(str);
+  this.push(str)
+  callback();
+};
+
+MorseDecodeStream.prototype._flush = function(callback) {
+  callback();
+};
+
+function createEncodeStream() {
+  return new MorseEncodeStream();
+}
+
+function createDecodeStream() {
+  return new MorseDecodeStream();
+}
 
 function encode (obj) {
   return maybeRecurse(obj, encodeMorseString);
