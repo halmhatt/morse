@@ -12,9 +12,13 @@
   },
   "main": "morse.js",
   "dependencies": {
-    "optimist": "*"
+    "optimist": "*",
+    "through2": "^0.6.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "^2.1.0",
+    "q": "^1.1.2"
+  },
   "optionalDependencies": {},
   "engines": {
     "node": "*"
