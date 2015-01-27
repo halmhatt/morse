@@ -29,6 +29,7 @@ $ morse -d "`cat hello.txt`"
 HELLO
 ````
 
+### using pipes
 You can use pipes to pipe text into morse with the `-p` flag or `--pipe`. Encode:
 ```bash
 $ echo "Hello morse" | morse -p
@@ -66,6 +67,23 @@ var encoded = morse.encode([ 'hello', 'world' ]);
 morse.decode(encoded);
 // [ 'HELLO', 'WORLD' ]
 ````
+
+### example usage with streams
+
+```javascript
+var morse = require('morse');
+var fs = require('fs');
+
+// Encode
+fs.createReadStream(__dirname + '/file.txt')
+	.pipe(morse.createEncodeStream())
+	.pipe(process.stdout);
+
+// Decode
+fs.createReadStream(__dirname + '/file-encoded.txt')
+	.pipe(morse.createDecodeStream())
+	.pipe(process.stdout);
+```
 
 ## methods
 
