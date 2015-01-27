@@ -22,7 +22,8 @@ Usage: morse [options] string
 
 Options:
   -d, --decode  Decode a string of Morse code  [boolean]
-  -h, --help    Show this text  
+  -h, --help    Show this text 
+  -p, --pipe    Use stdin and pipe to stdout 
 
 $ morse hello > hello.txt
 $ morse -d "`cat hello.txt`"
