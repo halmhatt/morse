@@ -29,16 +29,20 @@ $ morse -d "`cat hello.txt`"
 HELLO
 ````
 
-You can use pipes to pipe text into morse with the `-p` flag or `--pipe`. 
+You can use pipes to pipe text into morse with the `-p` flag or `--pipe`. Encode:
 ```bash
 $ echo "Hello morse" | morse -p
 .... . .-.. .-.. --- ....... -- --- .-. ... . ?
+```
 
-// Decode
+Decode:
+```bash
 $ echo ".... . .-.. .-.. --- ....... -- --- .-. ... . ?" | morse -p -d
 HELLO MORSE
+```
 
-// Pipe twice
+Pipe twice for fun
+```bash
 $ echo "Hello morse" | morse -p | morse -p -d
 HELLO MORSE
 ```
