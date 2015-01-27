@@ -1,20 +1,18 @@
 var morse = require('../');
+var assert = require('assert');
 
-var arr = [
-  'hello',
-  'world'
-];
-console.log(arr);
+describe('array', function() {
+	it('should encode and decode an array', function() {
+		var arr = [
+		  'hello',
+		  'world'
+		];
 
-var encoded = morse.encode(arr);
-console.log(encoded);
+		var encoded = morse.encode(arr);
+		var decoded = morse.decode(encoded);
 
-var decoded = morse.decode(encoded);
-console.log(decoded);
-
-var expected = [
-  'HELLO',
-  'WORLD'
-];
-
-console.log(expected[1] == decoded[1] ? 'pass' : 'fail');
+		assert.deepEqual(decoded, arr.map(function(str) {
+			return str.toUpperCase();
+		}), 'Arrays should be equal except for case');
+	});
+});
