@@ -77,13 +77,13 @@ var fs = require('fs');
 
 // Encode
 fs.createReadStream(__dirname + '/file.txt')
-	.pipe(morse.createEncodeStream())
-	.pipe(process.stdout);
+  .pipe(morse.createEncodeStream())
+  .pipe(process.stdout);
 
 // Decode
 fs.createReadStream(__dirname + '/file-encoded.txt')
-	.pipe(morse.createDecodeStream())
-	.pipe(process.stdout);
+  .pipe(morse.createDecodeStream())
+  .pipe(process.stdout);
 ```
 
 ## methods
